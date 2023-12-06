@@ -1,24 +1,20 @@
-# Directorios
-SKETCH_DIR = /home/adaypa/Programming/RobotDog/sketches
-SKETCH_NAME = RobotDog.ino
-
-# Configuración de la placa (ajusta según tu configuración)
-BOARD = arduino:avr:nano
-
-# Detectar automáticamente el puerto
-PORT := $(shell ls /dev/ttyUSB* 2>/dev/null)
+# Configuración para la conexión SSH
+RPI_USER = ubuntu
+RPI_IP = 192.168.1.46# Reemplaza con la IP de tu Raspberry Pi
+RPI_DIR = /home/$(RPI_USER)/RobotDog
+RPI_INO_DIR = RobotDog
+SKETCH_NAME = sketches/RobotDog.ino
+PRIVATE_KEY = /home/adaypa/.ssh/id_rsa  # Reemplaza con tu ruta real
 
 # Comandos
-COMPILE_CMD = arduino-cli compile --fqbn $(BOARD) $(SKETCH_DIR)/$(SKETCH_NAME)
-UPLOAD_CMD = arduino-cli upload -p $(PORT) --fqbn $(BOARD) $(SKETCH_DIR)/$(SKETCH_NAME)
+COPY_CMD = scp -i $(PRIVATE_KEY) $(SKETCH_NAME) $(RPI_USER)@$(RPI_IP):$(RPI_DIR)/
+UPLOAD_CMD = ssh -i $(PRIVATE_KEY) $(RPI_USER)@$(RPI_IP) "/home/ubuntu/arduino_upload.sh $(RPI_INO_DIR)"
 
 # Objetivos predeterminados
-.PHONY: all compile upload
+.PHONY: all upload
 
-all: compile upload
+all: upload
 
-compile:
-	$(COMPILE_CMD)
-
-upload:
+upload: $(SKETCH_NAME)
+	$(COPY_CMD)
 	$(UPLOAD_CMD)
