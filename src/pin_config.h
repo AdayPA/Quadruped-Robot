@@ -14,16 +14,16 @@
  *   Front/Back     Left/Right     Arm/Wrist/Shoulder
  */
 
-const int fRArm = 4;           //
-const int fRWrist = 5;         //
+const int fRArm = 4;            //
+const int fRWrist = 5;          //
 const int fRShoulder = 6;       //         FRONT SERVOS
 const int fLArm = 2;            //  
-const int fLWrist = A0;          //
+const int fLWrist = A0;         //
 const int fLShoulder = 3;       //
 
 const int rRArm = 12;           //
 const int rRWrist = 11;         //
-const int rRShoulder = 10;       //          REAR SERVOS
+const int rRShoulder = 10;      //          REAR SERVOS
 const int rLArm = 9;            //         
 const int rLWrist = 8;          //
 const int rLShoulder = 7;       //

@@ -5,17 +5,26 @@ int delay_ = 5;
 int speed = 20;
 
 void setup() {
-   sRLArm.attach(fLArm);
-   sRLWrist.attach(fLWrist);
-   sRLShoulder.attach(fLShoulder);
-   sRLArm.write(100);
-   sRLWrist.write(90);
-   sRLShoulder.write(90);
+// ! ||--------------------------------------------------------------------------------||
+// ! ||                                    Servo attach                                ||
+// ! ||--------------------------------------------------------------------------------||
+  sRLArm.attach(rLArm);
+  sRLWrist.attach(rLWrist);
+  sRLShoulder.attach(rLShoulder);
+  sRRArm.attach(rRArm);
+  sRRWrist.attach(rRWrist);
+  sRRShoulder.attach(rRShoulder);
 
+  sFLArm.attach(fLArm);
+  sFLWrist.attach(fLWrist);
+  sFLShoulder.attach(fLShoulder);
+  sFRArm.attach(fRArm);
+  sFRWrist.attach(fRWrist);
+  sFRShoulder.attach(fRShoulder);
 }
 
 void loop() {
-
+  moveRL(sRLArm,sRLWrist,delay_,speed);
 }
 
 /*
