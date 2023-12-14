@@ -14,18 +14,18 @@
  *   Front/Back     Left/Right     Arm/Wrist/Shoulder
  */
 
-const int fRArm = 13;           //
-const int fRWrist = 11;         //
-const int fRShoulder = 8;       //         FRONT SERVOS
-const int fLArm = 7;            //  
-const int fLWrist = 5;          //
+const int fRArm = 4;           //
+const int fRWrist = 5;         //
+const int fRShoulder = 6;       //         FRONT SERVOS
+const int fLArm = 2;            //  
+const int fLWrist = A0;          //
 const int fLShoulder = 3;       //
 
 const int rRArm = 12;           //
-const int rRWrist = 10;         //
-const int rRShoulder = 9;       //          REAR SERVOS
-const int rLArm = 5;            //         
-const int rLWrist = 6;          //
+const int rRWrist = 11;         //
+const int rRShoulder = 10;       //          REAR SERVOS
+const int rLArm = 9;            //         
+const int rLWrist = 8;          //
 const int rLShoulder = 7;       //
 
 
@@ -37,5 +37,14 @@ const int rLShoulder = 7;       //
 Servo sRLArm;
 Servo sRLWrist;
 Servo sRLShoulder;
+Servo sRRArm;
+Servo sRRWrist;
+Servo sRRShoulder;
+Servo sFLArm;
+Servo sFLWrist;
+Servo sFLShoulder;
+Servo sFRArm;
+Servo sFRWrist;
+Servo sFRShoulder;
 
 #endif // PIN_CONFIG_H
