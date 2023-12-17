@@ -114,7 +114,7 @@ void moveServos3Millis(int pos_s1, int pos_s2, int pos_s3, Servo &servo1, Servo 
     }
 }
 
-void moveRL(Servo &sRLArm, Servo &sRLWrist, int delay_, int speed) {
+void moveRL( int delay_, int speed) {
   moveServos2(81,116,sRLArm,sRLWrist,speed);
   delay(delay_);
   moveServos2(73,141,sRLArm,sRLWrist,speed);
@@ -128,4 +128,17 @@ void moveRL(Servo &sRLArm, Servo &sRLWrist, int delay_, int speed) {
   moveServos2(35,133,sRLArm,sRLWrist,speed);
   delay(delay_);
   moveServos2(56,112,sRLArm,sRLWrist,speed);
+}
+
+void moveRR( int delay_, int speed) {
+  moveServos2(125,40,sRRArm,sRRWrist,speed);
+  delay(delay_);
+  moveServos2(110,20,sRRArm,sRRWrist,speed);
+  delay(delay_);
+  moveServos2(160,0,sRRArm,sRRWrist,speed);
+  delay(delay_);
+  moveServos2(160,50,sRRArm,sRRWrist,speed);
+  delay(delay_);
+  moveServos2(102,80,sRRArm,sRRWrist,speed);
+  delay(delay_);
 }
