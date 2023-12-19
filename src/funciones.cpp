@@ -142,3 +142,82 @@ void moveRR( int delay_, int speed) {
   moveServos2(102,80,sRRArm,sRRWrist,speed);
   delay(delay_);
 }
+
+void moveFR( int delay_, int speed) {
+  moveServos2(125,40,sFRArm,sFRWrist,speed);
+  delay(delay_);
+  moveServos2(110,20,sFRArm,sFRWrist,speed);
+  delay(delay_);
+  moveServos2(160,0,sFRArm,sFRWrist,speed);
+  delay(delay_);
+  moveServos2(160,50,sFRArm,sFRWrist,speed);
+  delay(delay_);
+  moveServos2(102,80,sFRArm,sFRWrist,speed);
+  delay(delay_);
+}
+
+
+void moveRRMillis(int delay_, int speed, unsigned long* prevInterval, const long intervalFunc) {
+    if (millis() - *prevInterval >= intervalFunc) {
+        moveServos2(125,40,sRRArm,sRRWrist,speed);
+        delay(delay_);
+        moveServos2(110,20,sRRArm,sRRWrist,speed);
+        delay(delay_);
+        moveServos2(160,0,sRRArm,sRRWrist,speed);
+        delay(delay_);
+        moveServos2(160,50,sRRArm,sRRWrist,speed);
+        delay(delay_);
+        moveServos2(102,80,sRRArm,sRRWrist,speed);
+        delay(delay_);
+        *prevInterval = millis();
+    }
+}
+
+
+void moveFRMiliis(int delay_, int speed, unsigned long* prevInterval, const long intervalFunc) {
+    if (millis() - *prevInterval >= intervalFunc) {
+        moveServos2(125,40,sFRArm,sFRWrist,speed);
+        delay(delay_);
+        moveServos2(110,20,sFRArm,sFRWrist,speed);
+        delay(delay_);
+        moveServos2(160,0,sFRArm,sFRWrist,speed);
+        delay(delay_);
+        moveServos2(160,50,sFRArm,sFRWrist,speed);
+        delay(delay_);
+        moveServos2(102,80,sFRArm,sFRWrist,speed);
+        delay(delay_);
+        *prevInterval = millis();
+    }
+}
+
+
+void moveServos2(int pos_s1, int pos_s2, Servo servo1, Servo servo2, int vel)
+{
+    moveServosRecursive(pos_s1, pos_s2, servo1, servo2, vel);
+}
+
+
+void moveServosRecursive(int pos_s1, int pos_s2, Servo servo1, Servo servo2, int vel)
+{
+    int servo1_delta = pos_s1 - servo1.read();
+    int servo2_delta = pos_s2 - servo2.read();
+    float servo1_increment = servo1_delta > 0 ? 1.0 : -1.0;
+    float servo2_increment = servo2_delta > 0 ? 1.0 : -1.0;
+
+    if (servo1.read() != pos_s1)
+    {
+        servo1.write(servo1.read() + servo1_increment);
+    }
+
+    if (servo2.read() != pos_s2)
+    {
+        servo2.write(servo2.read() + servo2_increment);
+    }
+
+    delay(vel);
+
+    if (servo1.read() != pos_s1 || servo2.read() != pos_s2)
+    {
+        moveServosRecursive(pos_s1, pos_s2, servo1, servo2, vel);
+    }
+}
