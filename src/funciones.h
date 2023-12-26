@@ -19,4 +19,8 @@ void moveFRMiliis(int delay_, int speed, unsigned long prevInterval, const long 
 void moveServosTest(int pos_s1, int pos_s2, Servo servo1, Servo servo2, int vel);
 void moveServosRecursive(int pos_s1, int pos_s2, Servo servo1, Servo servo2, int vel);
 
+void attachServos();
+void standUp();
+
+
 #endif

@@ -2,6 +2,7 @@
 #ifndef PIN_CONFIG_H
 #define PIN_CONFIG_H
 
+#include "/home/adaypa/Programming/RobotDog/src/librerias.h"
 
 // ! ||--------------------------------------------------------------------------------||
 // ! ||                             Definiciones de pines                              ||

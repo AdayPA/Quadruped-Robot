@@ -1,23 +1,40 @@
 #include "/home/adaypa/Programming/RobotDog/src/funciones.cpp"
-#include "/home/adaypa/Programming/RobotDog/src/pin_config.h"
 
+String readString;
 
-void setup() {
-// ! ||--------------------------------------------------------------------------------||
-// ! ||                                    Servo attach                                ||
-// ! ||--------------------------------------------------------------------------------||
-
-  sRRArm.attach(rRArm);
-  sRRWrist.attach(rRWrist);
-  sRRShoulder.attach(rRShoulder);
-
-  sRRShoulder.write(105);
-  sRRArm.write(120);
-  sRRWrist.write(40);
+void setup()
+{
+    Serial.begin(115200);
+    attachServos();
+    standUp();
 
 }
 
-void loop() {
+void loop()
+{
+    while (Serial.available()) {
+        char c = Serial.read();  //gets one byte from serial buffer
+        readString += c; //makes the string readString
+        delay(2);  //slow looping to allow buffer to fill with next character
+    }
 
+    if (readString.length() >0) {
+        Serial.println(readString);  //so you can see the captured string 
+        int n = readString.toInt();  //convert readString into a number
+
+        // auto select appropriate value, copied from someone elses code.
+        if(n >= 500)
+        {
+        Serial.print("writing Microseconds: ");
+        Serial.println(n);
+        sFRArm.writeMicroseconds(n);
+        }
+        else
+        {   
+        Serial.print("writing Angle: ");
+        Serial.println(n);
+        sFRArm.write(n);
+        }
+        readString=""; //empty for next input
+    } 
 }
-
